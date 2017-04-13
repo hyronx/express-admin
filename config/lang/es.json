@@ -16,6 +16,7 @@
     "access-denied"     : "¡Acceso Denegado!",
     "find-user"         : "¡Usuario inexistente!",
     "invalid-password"  : "¡Clave inválida!",
+    "invalid-login"     : "!Usuario o clave inválidos!",
 
     "home"              : "Inicio",
     "site-admin"        : "Sitio de Administración",
