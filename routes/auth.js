@@ -25,7 +25,7 @@ exports.restrict = function (req, res, next) {
 exports.login = function (req, res) {
 	// check if users is a function
 	if ('function'===typeof res.locals._admin.users) {
-		res.locals._admin.users(req.body.username, req.body.password, req.locals._admin, function (err, user) {
+		res.locals._admin.users(req.body.username, req.body.password, res.locals._admin, function (err, user) {
 			// query the function. It should return a valid user of the form
 			// { name: String!, admin: bool }
 			if (!user || !user.name) {
