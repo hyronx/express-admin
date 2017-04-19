@@ -232,7 +232,7 @@ function initServer (args) {
         res.locals._admin = args;
 
         // i18n
-        var lang = req.cookies.lang || 'en';
+        var lang = req.cookies.lang || args.config.app.defaultLang || 'en';
         res.cookie('lang', lang, {path: '/', maxAge: 900000000});
         moment.locale(lang == 'cn' ? 'zh-cn' : lang);
         numeral.locale(lang == 'cn' ? 'zh-cn' : lang);
