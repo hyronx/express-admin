@@ -19,7 +19,9 @@ var express = require('express'),
     hogan = require('hogan.js');
 
 var moment = require('moment'),
-    async = require('async');
+    async = require('async'),
+    numeral = require('numeral'),
+    numeralLocales = require('numeral/locales');
 
 var Client = require('./lib/db/client'),
     schema = require('./lib/db/schema'),
@@ -133,7 +135,7 @@ function initSettings (args) {
         var fpath = args.custom[key].events;
         if (fpath) break;
     }
-    var events = fpath ? require(fpath) : {};
+    var events = fpath ? require(fpath) : (args.events || {});
     if (!events.hasOwnProperty('preSave'))
         events.preSave = function (req, res, args, next) {next()};
     if (!events.hasOwnProperty('postSave'))
@@ -233,6 +235,7 @@ function initServer (args) {
         var lang = req.cookies.lang || 'en';
         res.cookie('lang', lang, {path: '/', maxAge: 900000000});
         moment.locale(lang == 'cn' ? 'zh-cn' : lang);
+        numeral.locale(lang == 'cn' ? 'zh-cn' : lang);
 
         // template vars
         res.locals.string = args.langs[lang];
@@ -241,6 +244,8 @@ function initServer (args) {
         res.locals.themes = args.themes;
         res.locals.layouts = args.layouts;
         res.locals.languages = args.languages;
+        res.locals.logo = args.config.app.logo || args.langs[lang].logo;
+        res.locals.faviconfolder = args.config.app.faviconfolder || args.config.app.root;
 
         // required for custom views
         res.locals._admin.views = app.get('views');

@@ -23,36 +23,60 @@ exports.restrict = function (req, res, next) {
 }
 
 exports.login = function (req, res) {
-    // query the db for the given username
-    var user = res.locals._admin.users[req.body.username];
-    if (!user) {
-        req.session.error = res.locals.string['find-user'];
-        req.session.username = req.body.username;
-        res.redirect(res.locals.root+'/login');
-        return;
-    }
+	// check if users is a function
+	if ('function'===typeof res.locals._admin.users) {
+		res.locals._admin.users(req.body.username, req.body.password, res.locals._admin, function (err, user) {
+			// query the function. It should return a valid user of the form
+			// { name: String!, admin: bool }
+			if (!user || !user.name) {
+				req.session.error = res.locals.string['invalid-login'];
+				req.session.username = req.body.username;
+				res.redirect(res.locals.root+'/login');
+				return;
+			}
 
-    // apply the same algorithm to the POSTed password, applying
-    // the hash against the pass / salt, if there is a match we
-    // found the user
-    pwd.hash(req.body.password, user.salt, function (err, hash) {
-        if (hash !== user.hash) {
-            req.session.error = res.locals.string['invalid-password'];
-            req.session.username = req.body.username;
-            res.redirect(res.locals.root+'/login');
-            return;
-        }
+			// Regenerate session when signing in
+			// to prevent fixation
+			req.session.regenerate(function (err) {
+				// Store the user's primary key
+				// in the session store to be retrieved,
+				// or in this case the entire user object
+				req.session.user = user;
+				res.redirect(res.locals.root+'/');
+			});
+		});
+	} else {
+		// query the db for the given username
+		var user = res.locals._admin.users[req.body.username];
+		if (!user) {
+			req.session.error = res.locals.string['find-user'];
+			req.session.username = req.body.username;
+			res.redirect(res.locals.root+'/login');
+			return;
+		}
 
-        // Regenerate session when signing in
-        // to prevent fixation
-        req.session.regenerate(function (err) {
-            // Store the user's primary key
-            // in the session store to be retrieved,
-            // or in this case the entire user object
-            req.session.user = user;
-            res.redirect(res.locals.root+'/');
-        });
-    });
+		// apply the same algorithm to the POSTed password, applying
+		// the hash against the pass / salt, if there is a match we
+		// found the user
+		pwd.hash(req.body.password, user.salt, function (err, hash) {
+			if (hash !== user.hash) {
+				req.session.error = res.locals.string['invalid-password'];
+				req.session.username = req.body.username;
+				res.redirect(res.locals.root+'/login');
+				return;
+			}
+
+			// Regenerate session when signing in
+			// to prevent fixation
+			req.session.regenerate(function (err) {
+				// Store the user's primary key
+				// in the session store to be retrieved,
+				// or in this case the entire user object
+				req.session.user = user;
+				res.redirect(res.locals.root+'/');
+			});
+		});
+	}
 }
 
 exports.logout = function (req, res) {
