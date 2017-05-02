@@ -128,10 +128,12 @@ function render (req, res, next, data, args) {
     res.locals.inline = [data.oneToOne, data.manyToOne];
         
     res.locals.partials = {
-        content:  'editview',
-        view:     'editview/view',
-        inline:   'editview/inline',
-        column:   'editview/column'
+        content:      'editview',
+        view:         'editview/view',
+        inline:       'editview/inline',
+        inlinetable:  'editview/inlinetable',
+        column:       'editview/column',
+        columntable:  'editview/columntable'
     };
     
     next();

@@ -1,0 +1,89 @@
+<div class="form-horizontal {{#error}}has-error{{/error}}">
+
+{{#editview.readonly}}
+    {{#control}}
+        {{^select}}
+        <span>{{value}}</span>
+        <input type="hidden" name="{{key}}" value="{{value}}" />
+        {{/select}}
+        {{#select}}
+            {{#value}}
+                {{#selected}}
+                <span>{{__text}}</span>
+                <input type="hidden" name="{{key}}" value="{{__pk}}" />
+                {{/selected}}
+            {{/value}}
+        {{/select}}
+    {{/control}}
+{{/editview.readonly}}
+
+{{^editview.readonly}}
+
+    {{#control}}
+    {{! data-type-name="type.name" data-allow-null="allowNull" data-default-value="defaultValue"}}
+
+
+        {{#number}}
+        <input type="number" name="{{key}}" value="{{value}}" step="any" class="form-control" />
+        {{/number}}
+
+        {{#text}}
+        <input type="text" name="{{key}}" value="{{value}}" class="form-control {{#editor}}{{editor}}{{/editor}}" />
+        {{/text}}
+
+        {{#textarea}}
+        <textarea name="{{key}}" class="form-control {{#editor}}{{editor}}{{/editor}}">{{value}}</textarea>
+        {{/textarea}}
+
+        {{#select}}
+        <select name="{{key}}" class="chosen-select form-control" data-placeholder="{{string.select}}" {{#multiple}}multiple="multiple"{{/multiple}}>
+            <option value="" {{#selected}}selected="selected"{{/selected}}></option>
+            {{!oneToMany}}
+            {{#value}}
+            <option value="{{__pk}}" {{#selected}}selected="selected"{{/selected}}>{{__text}}</option>
+            {{/value}}
+        </select>
+        {{/select}}
+
+        {{#date}}
+        <input type="text" name="{{key}}" value="{{value}}" class="datepicker form-control" autocomplete="off" />
+        {{/date}}
+        {{#time}}
+        <input type="text" name="{{key}}" value="{{value}}" class="timepicker form-control" autocomplete="off" />
+        {{/time}}
+        {{#datetime}}
+        <input type="text" name="{{key}}" value="{{value}}" class="datetime-picker form-control" autocomplete="off" />
+        {{/datetime}}
+        {{#year}}
+        <input type="text" name="{{key}}" value="{{value}}" class="yearpicker form-control" autocomplete="off" />
+        {{/year}}
+
+        {{#file}}
+        {{^binary}}
+        <input type="text" name="{{key}}" value="{{value}}" class="form-control" />
+        {{/binary}}
+        {{/file}}
+        {{#binary}}
+        <img src="{{value}}" alt="" />
+        {{/binary}}
+
+        {{#radio}}
+        {{#value}}
+        <label class="radio-inline">
+            <input type="radio" name="{{key}}" value="{{value}}" {{#active}}checked="checked"{{/active}} /> {{text}}
+        </label>
+        {{/value}}
+        {{/radio}}
+
+        {{#error}}
+        <strong class="help-block" data-error="{{type}}">{{message}}</strong>
+        {{/error}}
+
+        {{#hidden}}
+        <input type="hidden" name="{{key}}" value="{{value}}" />
+        {{/hidden}}
+
+    {{/control}}
+{{/editview.readonly}}
+</div>
+
