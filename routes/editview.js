@@ -31,6 +31,16 @@ function action (req, name) {
     return {}.hasOwnProperty.call(req.body.action, name);
 }
 
+function customAction (req, args) {
+    var view = args.settings[args.name];
+    for (var i in view.editview.actions) {
+        if ({}.hasOwnProperty.call(req.body.action, view.editview.actions[i].name)) {
+            return view.editview.actions[i].name;
+        }
+    }
+    return null;
+}
+
 exports.get = function (req, res, next) {
     var args = getArgs(req, res);
 
@@ -48,9 +58,19 @@ exports.post = function (req, res, next) {
         if (err) return next(err);
 
         var view = req.body.view,
-            table = Object.keys(view)[0];
+            table = Object.keys(view)[0],
+            customActionKey = customAction(req, args);
 
-        if (action(req, 'remove')) {
+        if (customActionKey) {
+            args.action = customActionKey;
+            return async.series([
+                events.customAction.bind(events, req, res, args)
+            ], function(err) {
+                // same reactions as 'continue'
+                if (args.debug) return render(req, res, next, data, args);
+                return res.redirect(res.locals.root+'/'+args.slug+'/'+args.id.join());
+            });
+        } else if (action(req, 'remove')) {
             // should be based on constraints
             args.action = 'remove';
 
@@ -110,8 +130,10 @@ function render (req, res, next, data, args) {
         slug: args.slug,
         action: req.url,
         readonly: view.editview.readonly,
-        success: args.success
+        success: args.success,
+        customActions: view.editview.actions
     };
+
     res.locals.breadcrumbs = {
         links: [
             {url: '/', text: string.home},
