@@ -1,12 +1,24 @@
 
 {{#view}}
+<form class="form-inline" action="{{root}}{{action}}" method="post" accept-charset="utf-8" enctype="multipart/form-data">
 <h2>
     {{name}}
     <a href="#" class="glyphicon glyphicon-filter" title="{{string.filter}}"></a>
+
     {{#table}}
-    <a href="{{root}}/{{slug}}/add" class="btn btn-default">{{string.add}} {{name}}</a>
+    <div class="form-group mx-0">
+        <a href="{{root}}/{{slug}}/add" class="btn btn-default">{{string.add}} {{name}}</a>
+    </div>
+
+    {{#customActions}}
+    <div class="form-group mx-0">
+        <button type="submit" class="btn btn-warning" name="action[{{name}}]">{{verbose}}</button>
+    </div>
+    {{/customActions}}
     {{/table}}
+    <input type="hidden" name="_csrf" value="{{csrf}}" />
 </h2>
+</form>
 {{/view}}
 
 {{#show.success}}

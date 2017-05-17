@@ -22,17 +22,41 @@ function getArgs (req, res) {
     return args;
 }
 
+function customAction (req, args) {
+    var view = args.settings[args.name];
+    for (var i in view.listview.actions) {
+        if ({}.hasOwnProperty.call(req.body.action, view.listview.actions[i].name)) {
+            return view.listview.actions[i].name;
+        }
+    }
+    return null;
+}
+
 exports.get = function (req, res, next) {
-    _data(req, res, next);
+    var args = getArgs(req, res);
+
+    _data(req, res, next, args);
 }
 
 exports.post = function (req, res, next) {
-    _data(req, res, next);
+    var args = getArgs(req, res),
+      customActionKey = customAction(req, args);
+
+    if (customActionKey) {
+        args.action = customActionKey;
+        var events = res.locals._admin.events;
+        async.series([
+            events.customAction.bind(events, req, res, args),
+        ], function (err) {
+            return res.redirect(res.locals.root+'/'+args.slug);
+        });
+    } else {
+        _data(req, res, next, args);
+    }
 }
 
-function _data (req, res, next) {
-    var args = getArgs(req, res),
-        events = res.locals._admin.events;
+function _data (req, res, next, args) {
+    var events = res.locals._admin.events;
 
     args.filter = filter.prepareSession(req, args);
     qb.lst.select(args);
@@ -87,8 +111,10 @@ function render (req, res, args, ddata, pager, order, next) {
     res.locals.view = {
         name: args.config.table.verbose,
         slug: args.slug,
+        action: req.url,
         error: res.locals.error,
-        table: !args.config.table.view
+        table: !args.config.table.view,
+        customActions: args.config.listview.actions
     };
     res.locals.breadcrumbs = {
         links: [
