@@ -8,7 +8,18 @@
 {{#editview.readonly}}
     {{#control}}
 
-    <div class="{{#text}}col-sm-5 col-md-4 col-lg-3{{/text}}{{#number}}col-sm-5 col-md-4 col-lg-3{{/number}}{{#date}}col-sm-5 col-md-4 col-lg-3{{/date}}{{#time}}col-sm-5 col-md-4 col-lg-3{{/time}}{{#datetime}}col-sm-5 col-md-4 col-lg-3{{/datetime}}{{#year}}col-sm-5 col-md-4 col-lg-3{{/year}}{{#select}}col-sm-5 col-md-4 col-lg-3{{/select}}{{#file}}col-sm-5 col-md-4 col-lg-3{{/file}}{{#radio}}col-sm-5 col-md-4 col-lg-3{{/radio}}{{#textarea}}{{#editor}}col-sm-9 col-md-9 col-lg-10{{/editor}}{{/textarea}}{{#textarea}}{{^editor}}col-sm-7 col-md-6 col-lg-5{{/editor}}{{/textarea}}">
+    <div class="
+        {{#text}}col-sm-5 col-md-4 col-lg-3{{/text}}
+        {{#number}}col-sm-5 col-md-4 col-lg-3{{/number}}
+        {{#date}}col-sm-5 col-md-4 col-lg-3{{/date}}
+        {{#time}}col-sm-5 col-md-4 col-lg-3{{/time}}
+        {{#datetime}}col-sm-5 col-md-4 col-lg-3{{/datetime}}
+        {{#year}}col-sm-5 col-md-4 col-lg-3{{/year}}
+        {{#select}}col-sm-5 col-md-4 col-lg-3{{/select}}
+        {{#file}}col-sm-5 col-md-4 col-lg-3{{/file}}
+        {{#radio}}col-sm-5 col-md-4 col-lg-3{{/radio}}
+        {{#textarea}}{{#editor}}col-sm-9 col-md-9 col-lg-10{{/editor}}{{/textarea}}
+        {{#textarea}}{{^editor}}col-sm-7 col-md-6 col-lg-5{{/editor}}{{/textarea}}">
 
     {{^select}}
         <span>{{value}}</span>
@@ -38,7 +49,18 @@
     {{#control}}
     {{! data-type-name="type.name" data-allow-null="allowNull" data-default-value="defaultValue"}}
 
-    <div class="{{#text}}col-sm-5 col-md-4 col-lg-3{{/text}}{{#number}}col-sm-5 col-md-4 col-lg-3{{/number}}{{#date}}col-sm-5 col-md-4 col-lg-3{{/date}}{{#time}}col-sm-5 col-md-4 col-lg-3{{/time}}{{#datetime}}col-sm-5 col-md-4 col-lg-3{{/datetime}}{{#year}}col-sm-5 col-md-4 col-lg-3{{/year}}{{#select}}col-sm-5 col-md-4 col-lg-3{{/select}}{{#file}}col-sm-5 col-md-4 col-lg-3{{/file}}{{#radio}}col-sm-5 col-md-4 col-lg-3{{/radio}}{{#textarea}}{{#editor}}col-sm-9 col-md-9 col-lg-10{{/editor}}{{/textarea}}{{#textarea}}{{^editor}}col-sm-7 col-md-6 col-lg-5{{/editor}}{{/textarea}}">
+    <div class="
+        {{#text}}col-sm-5 col-md-4 col-lg-3{{/text}}
+        {{#number}}col-sm-5 col-md-4 col-lg-3{{/number}}
+        {{#date}}col-sm-5 col-md-4 col-lg-3{{/date}}
+        {{#time}}col-sm-5 col-md-4 col-lg-3{{/time}}
+        {{#datetime}}col-sm-5 col-md-4 col-lg-3{{/datetime}}
+        {{#year}}col-sm-5 col-md-4 col-lg-3{{/year}}
+        {{#select}}col-sm-5 col-md-4 col-lg-3{{/select}}
+        {{#file}}col-sm-5 col-md-4 col-lg-3{{/file}}
+        {{#radio}}col-sm-5 col-md-4 col-lg-3{{/radio}}
+        {{#textarea}}{{#editor}}col-sm-9 col-md-9 col-lg-10{{/editor}}{{/textarea}}
+        {{#textarea}}{{^editor}}col-sm-7 col-md-6 col-lg-5{{/editor}}{{/textarea}}">
 
     {{#number}}
     <input type="number" name="{{key}}" value="{{value}}" step="any" class="form-control" />
@@ -53,7 +75,7 @@
     {{/textarea}}
 
     {{#select}}
-    <select name="{{key}}" class="chosen-select form-control" data-placeholder="{{string.select}}" {{#multiple}}multiple="multiple"{{/multiple}}>
+    <select name="{{key}}" class="chosen-select form-control" data-placeholder="{{#prompt}}{{prompt}}{{/prompt}}{{^prompt}}{{string.select}}{{/prompt}}" {{#multiple}}multiple="multiple"{{/multiple}}>
         <option value="" {{#selected}}selected="selected"{{/selected}}></option>
         {{!oneToMany}}
         {{#value}}
@@ -113,7 +135,18 @@
     {{/file}}
 
 	{{#description}}
-	<div class="help-block col-sm-4 col-md-4 col-lg-4">
+    <div class="
+            {{#text}}col-sm-5 col-md-6 col-lg-7{{/text}}
+            {{#number}}col-sm-5 col-md-6 col-lg-7{{/number}}
+            {{#date}}col-sm-5 col-md-6 col-lg-7{{/date}}
+            {{#time}}col-sm-5 col-md-6 col-lg-7{{/time}}
+            {{#datetime}}col-sm-5 col-md-6 col-lg-7{{/datetime}}
+            {{#year}}col-sm-5 col-md-6 col-lg-7{{/year}}
+            {{#select}}col-sm-5 col-md-6 col-lg-7{{/select}}
+            {{#file}}col-sm-5 col-md-6 col-lg-7{{/file}}
+            {{#radio}}col-sm-5 col-md-6 col-lg-7{{/radio}}
+            {{#textarea}}{{#editor}}col-sm-10 col-md-10 col-lg-10{{/editor}}{{/textarea}}
+            {{#textarea}}{{^editor}}col-sm-10 col-md-4 col-lg-5{{/editor}}{{/textarea}}">
 		{{{description}}}
 	</div>
 	{{/description}}

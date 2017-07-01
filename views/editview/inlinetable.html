@@ -1,60 +1,53 @@
-{{#inline}}
-<fieldset id="{{type}}">
-    {{#tables}}
-    <table class="table table-bordered table-condensed x-table" data-table="{{name}}">
-        <thead>
-            <tr class="label-default">
-                <th colspan="{{numcols}}">{{verbose}}</th>
-            </tr>
-            <tr class="label-default">
-                {{#blank}}
-                <td>
-                    {{verbose}}
-                </td>
-                {{/blank}}
-                <td>
-                    {{string.remove}}
-                </td>
-            </tr>
-        </thead>
-        <tbody>
-            {{#records}}
-            <tr>
-                {{#columns}}
-                <td>
-                    {{>columntable}}
-                </td>
-                {{/columns}}
-                <td>
-                    {{#pk}}
-                    <input type="hidden" name="{{key}}" value="{{value}}" />
-                    {{/pk}}
-                    {{#insert}}
-                    <input type="hidden" name="{{key}}" value="{{value}}" />
-                    <a href="#" class="remove text-muted btn-xs pull-right" data-table="{{name}}"><span class="glyphicon glyphicon-remove-sign"></span></a>
-                    {{/insert}}
-                    {{^insert}}
-                    <label>
-                        {{#remove}}
-                        <input type="checkbox" name="{{key}}" {{#value}}checked="checked"{{/value}} />
-                        {{/remove}}
-                    </label>
-                    {{/insert}}
-                </td>
-            </tr>
-            {{/records}}
-        </tbody>
+<table class="table table-bordered table-condensed x-table" data-table="{{name}}">
+    <thead>
+        <tr class="label-default">
+            <th colspan="{{numcols}}">{{verbose}}</th>
+        </tr>
+        <tr class="label-default">
+            {{#blank}}
+            <td>
+                {{verbose}}
+            </td>
+            {{/blank}}
+            <td>
+                {{string.remove}}
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+        {{#records}}
+        <tr>
+            {{#columns}}
+            <td>
+                {{>columntable}}
+            </td>
+            {{/columns}}
+            <td>
+                {{#pk}}
+                <input type="hidden" name="{{key}}" value="{{value}}" />
+                {{/pk}}
+                {{#insert}}
+                <input type="hidden" name="{{key}}" value="{{value}}" />
+                <a href="#" class="remove text-muted btn-xs pull-right" data-table="{{name}}"><span class="glyphicon glyphicon-remove-sign"></span></a>
+                {{/insert}}
+                {{^insert}}
+                <label>
+                    {{#remove}}
+                    <input type="checkbox" name="{{key}}" {{#value}}checked="checked"{{/value}} />
+                    {{/remove}}
+                </label>
+                {{/insert}}
+            </td>
+        </tr>
+        {{/records}}
+    </tbody>
 
-        <!-- Fix! Insert is not supported yet.
-        <tfoot {{#one}}{{#records}}class="hidden"{{/records}}{{/one}}>
-            <tr>
-                <td colspan="{{numcols}}">
-                    <a href="#" class="add-another" data-table="{{name}}"><small>{{string.add-another}} {{verbose}}</small></a>
-                </td>
-            </tr>
-        </tfoot>
-        -->
-    </table>
-    {{/tables}}
-</fieldset>
-{{/inline}}
+    <tfoot {{#one}}{{#records}}class="hidden"{{/records}}{{/one}}>
+        <tr>
+            <td colspan="{{numcols}}">
+                <a href="#" class="add-another" data-table="{{name}}"><small>{{string.add-another}} {{verbose}}</small></a>
+            </td>
+        </tr>
+    </tfoot>
+
+</table>
