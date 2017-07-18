@@ -1,0 +1,28 @@
+<div class="form-horizontal {{#error}}has-error{{/error}}">
+
+{{#control}}
+    {{^select}}
+        {{^radio}}
+            <span>{{value}}</span>
+            <input type="hidden" name="{{key}}" value="{{value}}" />
+        {{/radio}}
+        {{#radio}}
+            {{#value}}
+                {{#active}}
+                    <span>{{text}}</span>
+                {{/active}}
+            {{/value}}
+        {{/radio}}
+    {{/select}}
+    {{#select}}
+        {{#value}}
+            {{#selected}}
+            <span>{{__text}}</span>
+            <input type="hidden" name="{{key}}" value="{{__pk}}" />
+            {{/selected}}
+        {{/value}}
+    {{/select}}
+{{/control}}
+
+</div>
+

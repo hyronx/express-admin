@@ -1,0 +1,25 @@
+<table class="table table-bordered table-condensed x-table" data-table="{{name}}">
+    <thead>
+        <tr class="label-default">
+            <th colspan="{{numcols}}">{{verbose}}</th>
+        </tr>
+        <tr class="label-default">
+            {{#blank}}
+            <td>
+                {{verbose}}
+            </td>
+            {{/blank}}
+        </tr>
+    </thead>
+    <tbody>
+        {{#records}}
+        <tr>
+            {{#columns}}
+            <td>
+                {{>columnlist}}
+            </td>
+            {{/columns}}
+        </tr>
+        {{/records}}
+    </tbody>
+</table>

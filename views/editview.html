@@ -24,7 +24,12 @@
                 {{>inline}}
             {{/layoutTable}}
             {{#layoutTable}}
-                {{>inlinetable}}
+                {{#readonly}}
+                    {{>inlinetable}}
+                {{/readonly}}
+                {{^readonly}}
+                    {{>inlinelist}}
+                {{/readonly}}
             {{/layoutTable}}
         {{/tables}}
     </fieldset>

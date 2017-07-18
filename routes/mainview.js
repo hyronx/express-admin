@@ -1,5 +1,10 @@
+var qb = require('../lib/qb')();
 
 exports.get = function (req, res, next) {
+    _data(req, res, next);
+}
+
+function _data(req, res, next) {
     var settings = res.locals._admin.settings,
         custom = res.locals._admin.custom;
 
@@ -7,21 +12,33 @@ exports.get = function (req, res, next) {
     for (var key in settings) {
         var item = settings[key];
         if (!item.mainview.show || !item.table.pk || item.table.view) continue;
-        tables.push({slug: item.slug, name: item.table.verbose});
+        tables.push({
+          slug: item.slug,
+          name: item.table.verbose,
+          description: item.table.description
+        });
     }
 
     var views = [];
     for (var key in settings) {
         var item = settings[key];
         if (!item.mainview.show || !item.table.view) continue;
-        views.push({slug: item.slug, name: item.table.verbose});
+        views.push({
+          slug: item.slug,
+          name: item.table.verbose,
+          description: item.table.description
+        });
     }
 
     var customs = [];
     for (var key in custom) {
         var item = custom[key].app;
         if (!item || !item.mainview || !item.mainview.show) continue;
-        customs.push({slug: item.slug, name: item.verbose});
+        customs.push({
+          slug: item.slug,
+          name: item.verbose,
+          description: item.table.description
+        });
     }
 
     res.locals.tables = !tables.length ? null : {items: tables};

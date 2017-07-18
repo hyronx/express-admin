@@ -154,8 +154,10 @@ function render (req, res, next, data, args) {
         view:         'editview/view',
         inline:       'editview/inline',
         inlinetable:  'editview/inlinetable',
+        inlinelist:   'editview/inlinelist',
         column:       'editview/column',
-        columntable:  'editview/columntable'
+        columntable:  'editview/columntable',
+        columnlist:   'editview/columnlist'
     };
     
     next();
