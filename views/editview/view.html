@@ -46,6 +46,24 @@
                 </td>
             </tr>
             {{#blank}}
+
+            {{#control}}
+            {{#section}}
+            <tr class="info">
+                <td>
+                    <h4>
+                        {{section}}
+                    </h4>
+                    {{#sectionDescription}}
+                    <p class="text-muted">
+                        {{{sectionDescription}}}
+                    </p>
+                    {{/sectionDescription}}
+                </td>
+            </tr>
+            {{/section}}
+            {{/control}}
+
             <tr>
                 {{>column}}
             </tr>

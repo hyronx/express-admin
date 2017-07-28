@@ -94,9 +94,13 @@ exports.post = function (req, res, next) {
 
         ], function (err) {
             if (err) {
+                args.error = err.message;
+                return render(req, res, next, data, args);
+                /*
                 req.session.error = err.message;
                 res.redirect(res.locals.root+'/'+args.slug+page(req, args));
                 return;
+                */
             }
 
             req.session.success = true;
@@ -142,6 +146,7 @@ function render (req, res, next, data, args) {
         ]
     };
     res.locals.show.error = args.error;
+    res.locals.show.errorMsg = typeof args.error === 'string' ? args.error : null;
     res.locals.show.delete = !(req.params[1] == 'add');
 
     data.oneToOne.one = true;
