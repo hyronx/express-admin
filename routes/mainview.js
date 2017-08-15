@@ -37,14 +37,14 @@ function _data(req, res, next) {
         customs.push({
           slug: item.slug,
           name: item.verbose,
-          description: item.table.description
+          description: item.description
         });
     }
 
     res.locals.tables = !tables.length ? null : {items: tables};
     res.locals.views = !views.length ? null : {items: views};
     res.locals.custom = !customs.length ? null : {items: customs};
-    
+
     res.locals.partials = {
         content:  'mainview'
     };
