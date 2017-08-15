@@ -34,7 +34,7 @@
     <tbody>
     {{#items}}
         <tr>
-            <td>
+            <td data-toggle="tooltip" data-placement="right" title="{{description}}">
                 <a href="{{root}}/{{slug}}">{{name}}</a>
                 <a href="{{root}}/{{slug}}/add" class="glyphicon glyphicon-plus" title="{{string.add}} {{name}}"></a>
             </td>
@@ -54,7 +54,7 @@
     <tbody>
     {{#items}}
         <tr>
-            <td>
+            <td data-toggle="tooltip" data-placement="right" title="{{description}}">
                 <a href="{{root}}/{{slug}}">{{name}}</a>
             </td>
         </tr>
@@ -73,8 +73,8 @@
     <tbody>
     {{#items}}
         <tr>
-            <td>
-                <a href="{{root}}/{{slug}}">{{name}}: {{description}}</a>
+            <td data-toggle="tooltip" data-placement="right" title="{{description}}">
+                <a href="{{root}}/{{slug}}">{{name}}</a>
             </td>
         </tr>
     {{/items}}
