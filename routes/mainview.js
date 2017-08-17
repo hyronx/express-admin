@@ -8,16 +8,33 @@ function _data(req, res, next) {
     var settings = res.locals._admin.settings,
         custom = res.locals._admin.custom;
 
+    var sections = {};
     var tables = [];
     for (var key in settings) {
         var item = settings[key];
         if (!item.mainview.show || !item.table.pk || item.table.view) continue;
-        tables.push({
+        var collection = tables;
+        if (item.table.section) {
+            var section = sections[item.table.section];
+            if (!section) {
+                sections[item.table.section] = {
+                    title: item.table.section,
+                    description: item.table.sectionDescription,
+                    items: [],
+                }
+                section = sections[item.table.section];
+            }
+            collection = section.items;
+        }
+        collection.push({
           slug: item.slug,
           name: item.table.verbose,
           description: item.table.description
         });
     }
+    var rightSide = Object.keys(sections).map((k) => sections[k]);
+    var leftSide = rightSide.splice(0, Math.floor(rightSide.length / 2));
+    var columns = [{sections: leftSide}, {sections: rightSide}];
 
     var views = [];
     for (var key in settings) {
@@ -41,6 +58,7 @@ function _data(req, res, next) {
         });
     }
 
+    res.locals.columns = !columns ? null : columns;
     res.locals.tables = !tables.length ? null : {items: tables};
     res.locals.views = !views.length ? null : {items: views};
     res.locals.custom = !customs.length ? null : {items: customs};

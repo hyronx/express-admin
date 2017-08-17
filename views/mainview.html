@@ -24,6 +24,40 @@
     </div>
 </form>
 
+<table class="table">
+    <tr>
+        {{#columns}}
+        <td style="border: 0">
+            {{#sections}}
+            <table class="table table-bordered table-striped table-hover x-table">
+                <thead>
+                <tr class="label-default">
+                    <td>
+                        <b>{{title}}</b>
+                        {{#description}}
+                        <br/>{{description}}
+                        {{/description}}
+                    </td>
+                </tr>
+                </thead>
+                <tbody>
+                {{#items}}
+                <tr>
+                    <td>
+                        <a href="{{root}}/{{slug}}">{{name}}</a>
+                        <a href="{{root}}/{{slug}}/add" class="glyphicon glyphicon-plus" title="{{string.add}} {{name}}"></a>
+                    </td>
+                </tr>
+                {{/items}}
+                </tbody>
+            </table>
+            {{/sections}}
+        </td>
+        {{/columns}}
+    </tr>
+</table>
+
+
 {{#tables}}
 <table class="table table-bordered table-striped table-hover x-table">
     <thead>
