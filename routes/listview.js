@@ -110,6 +110,7 @@ function render (req, res, args, ddata, pager, order, next) {
 
     res.locals.view = {
         name: args.config.table.verbose,
+        description: args.config.table.description,
         slug: args.slug,
         action: req.url,
         error: res.locals.error,
