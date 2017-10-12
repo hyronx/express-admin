@@ -22,8 +22,17 @@
         {{#textarea}}{{^editor}}col-sm-7 col-md-6 col-lg-5{{/editor}}{{/textarea}}">
 
     {{^select}}
-        <span>{{value}}</span>
-        <input type="hidden" name="{{key}}" value="{{value}}" />
+        {{^radio}}
+            <span>{{value}}</span>
+            <input type="hidden" name="{{key}}" value="{{value}}" />
+        {{/radio}}
+        {{#radio}}
+            {{#value}}
+                {{#active}}
+                    <span>{{text}}</span>
+                {{/active}}
+            {{/value}}
+        {{/radio}}
     {{/select}}
     {{#select}}
         {{#value}}
