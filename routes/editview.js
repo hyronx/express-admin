@@ -147,7 +147,10 @@ function render (req, res, next, data, args) {
     };
     res.locals.show.error = args.error;
     res.locals.show.errorMsg = typeof args.error === 'string' ? args.error : null;
-    res.locals.show.delete = !(req.params[1] == 'add');
+    res.locals.show.delete = !(req.params[1] == 'add') && !view.editview.disableDelete;
+    res.locals.show.saveAdd = !view.editview.disableUpdate && !view.editview.disableInsert;
+    res.locals.show.save = !view.editview.disableUpdate || (!view.editview.disableInsert && (req.params[1] == 'add'));
+
 
     data.oneToOne.one = true;
     data.oneToOne.type = 'one';

@@ -6,15 +6,17 @@
     <a href="#" class="glyphicon glyphicon-filter" title="{{string.filter}}"></a>
 
     {{#table}}
-    <div class="form-group mx-0">
-        <a href="{{root}}/{{slug}}/add" class="btn btn-default">{{string.add}} {{name}}</a>
-    </div>
+        {{#show.add}}
+        <div class="form-group mx-0">
+            <a href="{{root}}/{{slug}}/add" class="btn btn-default">{{string.add}} {{name}}</a>
+        </div>
+        {{/show.add}}
 
-    {{#customActions}}
-    <div class="form-group mx-0">
-        <button type="submit" class="btn btn-warning" name="action[{{name}}]">{{verbose}}</button>
-    </div>
-    {{/customActions}}
+        {{#customActions}}
+        <div class="form-group mx-0">
+            <button type="submit" class="btn btn-warning" name="action[{{name}}]">{{verbose}}</button>
+        </div>
+        {{/customActions}}
     {{/table}}
     <input type="hidden" name="_csrf" value="{{csrf}}" />
 </h2>

@@ -42,15 +42,19 @@
 
     <fieldset id="controls">
         {{^view.readonly}}
-        {{#show.delete}}
-        <button type="submit" class="btn btn-danger form-control" name="action[remove]">{{string.delete}}</button>
-        {{/show.delete}}
+            {{#show.delete}}
+            <button type="submit" class="btn btn-danger form-control" name="action[remove]">{{string.delete}}</button>
+            {{/show.delete}}
 
-        <button type="submit" class="btn btn-default form-control" name="action[another]">{{string.save-add}}</button>
-        
-        <button type="submit" class="btn btn-default form-control" name="action[continue]">{{string.save-continue}}</button>
-        
-        <button type="submit" class="btn btn-primary form-control" name="action[save]">{{string.save}}</button>
+            {{#show.saveAdd}}
+            <button type="submit" class="btn btn-default form-control" name="action[another]">{{string.save-add}}</button>
+            {{/show.saveAdd}}
+
+            {{#show.save}}
+                <button type="submit" class="btn btn-default form-control" name="action[continue]">{{string.save-continue}}</button>
+
+                <button type="submit" class="btn btn-primary form-control" name="action[save]">{{string.save}}</button>
+            {{/show.save}}
         {{/view.readonly}}
 
         {{#view}}

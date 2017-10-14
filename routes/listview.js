@@ -152,6 +152,8 @@ function render (req, res, args, ddata, pager, order, next) {
     res.locals.records = ddata.records;
     res.locals.pagination = pager;
 
+    res.locals.show.add = !args.config.editview.disableInsert && !args.config.editview.readonly;
+
     res.locals.partials = {
         content:    'listview',
         filter:     'listview/filter',
