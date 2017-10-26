@@ -67,6 +67,7 @@ exports.post = function (req, res, next) {
                 events.customAction.bind(events, req, res, args)
             ], function(err) {
                 // same reactions as 'continue'
+                req.session.success = true;
                 if (args.debug) return render(req, res, next, data, args);
                 return res.redirect(res.locals.root+'/'+args.slug+'/'+args.id.join());
             });
