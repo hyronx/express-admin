@@ -43,7 +43,12 @@
     <fieldset id="controls">
         {{^view.readonly}}
             {{#show.delete}}
-            <button type="submit" class="btn btn-danger form-control" name="action[remove]">{{string.delete}}</button>
+            <button type="submit"
+                    class="btn btn-danger form-control"
+                    name="action[remove]"
+                    onclick="return confirm('{{string.delete-confirm}}');">
+                {{string.delete}}
+            </button>
             {{/show.delete}}
 
             {{#show.saveAdd}}

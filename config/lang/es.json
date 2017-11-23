@@ -39,6 +39,7 @@
     "add"               : "Agregar",
     "change"            : "Cambiar",
     "delete"            : "Borrar",
+    "delete-confirm"    : "¿Está seguro/a de querer borrar este registro? (Esta operación no puede deshacerse)",
     "save"              : "Guardar",
     "save-continue"     : "Guardar y continuar editando",
     "save-add"          : "Guardar y agregar otro/a",

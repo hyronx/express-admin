@@ -39,6 +39,7 @@
     "add"               : "Add",
     "change"            : "Change",
     "delete"            : "Delete",
+    "delete-confirm"    : "Are you sure you want to delete this record?",
     "save"              : "Save",
     "save-continue"     : "Save and continue editing",
     "save-add"          : "Save and add another",
