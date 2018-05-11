@@ -15,7 +15,7 @@
                 <input type="text" name="table" class="form-control" />
             </div>
             <div class="col-lg-3 col-md-3 col-sm-3">
-                
+
             </div>
             <div class="col-lg-3 col-md-3 col-sm-3">
                 <button type="button" name="clear" class="btn btn-default form-control">{{string.clear}}</button>
@@ -68,7 +68,7 @@
     <tbody>
     {{#items}}
         <tr>
-            <td>
+            <td data-toggle="tooltip" data-placement="right" title="{{description}}">
                 <a href="{{root}}/{{slug}}">{{name}}</a>
                 <a href="{{root}}/{{slug}}/add" class="glyphicon glyphicon-plus" title="{{string.add}} {{name}}"></a>
             </td>
@@ -88,7 +88,7 @@
     <tbody>
     {{#items}}
         <tr>
-            <td>
+            <td data-toggle="tooltip" data-placement="right" title="{{description}}">
                 <a href="{{root}}/{{slug}}">{{name}}</a>
             </td>
         </tr>
@@ -107,7 +107,7 @@
     <tbody>
     {{#items}}
         <tr>
-            <td>
+            <td data-toggle="tooltip" data-placement="right" title="{{description}}">
                 <a href="{{root}}/{{slug}}">{{name}}</a>
             </td>
         </tr>

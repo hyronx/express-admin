@@ -26,6 +26,14 @@ exports.login = function (req, res) {
 	// check if users is a function
 	if ('function'===typeof res.locals._admin.users) {
 		res.locals._admin.users(req.body.username, req.body.password, res.locals._admin, function (err, user) {
+      // error should match the defined
+      // error: String
+      if (err) {
+        req.session.error = res.locals.string[err];
+        req.session.username = req.body.username;
+        res.redirect(res.locals.root+'/login');
+      }
+
 			// query the function. It should return a valid user of the form
 			// { name: String!, admin: bool }
 			if (!user || !user.name) {
