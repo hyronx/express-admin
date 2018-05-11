@@ -29,7 +29,8 @@ var Client = require('./lib/db/client'),
     routes = require('./lib/app/routes');
 
 var Xsql = require('xsql'),
-    qb = require('./lib/qb');
+    qb = require('./lib/qb'),
+    dcopy = require('deep-copy');
 
 
 // creates project's config files
@@ -170,7 +171,7 @@ function initSettings (args) {
     }());
 
     // static
-    args.libs = require(path.join(__dirname, 'config/libs'));
+    args.libs = dcopy(require(path.join(__dirname, 'config/libs')));
     args.libs.external = {css: [], js: []};
     for (var key in args.custom) {
         var assets = args.custom[key].public;

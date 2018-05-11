@@ -1,6 +1,10 @@
 {
     "name": "express-admin",
+<<<<<<< HEAD
     "version": "1.2.21",
+=======
+    "version": "1.3.2",
+>>>>>>> 9dd76ee5cc52225b4db5dc6e68cb7afeef6db6bd
     "description": "MySql, MariaDB, SQLite and PostgreSQL database admin built with Express and Bootstrap",
     "keywords": [
         "mysql",
@@ -14,7 +18,11 @@
     ],
     "license": "MIT",
     "homepage": "https://github.com/simov/express-admin",
+<<<<<<< HEAD
     "author": "Simeon Velichkov <simeonvelichkov@gmail.com> (http://simov.github.io)",
+=======
+    "author": "Simeon Velichkov <simeonvelichkov@gmail.com> (https://simov.github.io)",
+>>>>>>> 9dd76ee5cc52225b4db5dc6e68cb7afeef6db6bd
     "repository": {
         "type": "git",
         "url": "https://github.com/simov/express-admin.git"
@@ -34,7 +42,11 @@
         "mysql": "2.2.0",
         "mysql-validator": "0.1.6",
         "async": "0.9.0",
+<<<<<<< HEAD
         "pwd": "0.0.3",
+=======
+        "pwd": "1.1.0",
+>>>>>>> 9dd76ee5cc52225b4db5dc6e68cb7afeef6db6bd
         "commander": "1.3.2",
         "colors": "0.6.1",
         "slugify": "0.1.0",
@@ -42,9 +54,13 @@
         "deep-copy": "1.0.0",
         "xsql": "1.0.1",
         "moment": "2.8.3",
+<<<<<<< HEAD
         "numeral": "2.0.4",
         "express-admin-static": "2.2.2",
         "pg": "^6.1.2"
+=======
+        "express-admin-static": "2.2.2"
+>>>>>>> 9dd76ee5cc52225b4db5dc6e68cb7afeef6db6bd
     },
     "devDependencies": {
         "mocha": "1.20.1",
